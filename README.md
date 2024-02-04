@@ -11,3 +11,11 @@ The POC should support:
  * Getting the long URL from a short URL.
  * Getting statistics on the number of times a short URL has been "clicked" i.e. the number of times its long URL has been retrieved.
  * Entering a custom short URL or letting the app randomly generate one, while maintaining uniqueness of short URLs.
+
+## How to test
+
+Ensure that you have .Net framework v8.0+ installed. You can download SDK [here](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
+
+```shell
+dotnet test -l "console;verbosity=normal" src/dirs.proj
+```

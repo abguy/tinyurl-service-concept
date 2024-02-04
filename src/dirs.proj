@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.Build.Traversal">
+  <ItemGroup>
+    <ProjectReference Include="AlexeyTinyUrlService/AlexeyTinyUrlService.csproj" />
+    <ProjectReference Include="AlexeyTinyUrlService.Abstractions/AlexeyTinyUrlService.Abstractions.csproj" />
+    <ProjectReference Include="AlexeyTinyUrlService.IntegrationTests/AlexeyTinyUrlService.IntegrationTests.csproj" Pack="false" Publish="false" />
+    <ProjectReference Include="AlexeyTinyUrlService.UnitTests/AlexeyTinyUrlService.UnitTests.csproj" Pack="false" Publish="false" />
+  </ItemGroup>
+</Project>
