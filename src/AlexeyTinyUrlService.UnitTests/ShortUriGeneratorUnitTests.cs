@@ -15,24 +15,36 @@ public class ShortUriGeneratorUnitTests
         Assert.Throws<ArgumentException>(() => new ShortUriGeneratorRandom(0));
     }
 
+    [Fact]
+    public void TestGeneratorMd5ZeroLengthException()
+    {
+        Assert.Throws<ArgumentException>(() => new ShortUriGeneratorMd5(0));
+    }
+
     [Theory]
-    [InlineData(1)]
-    [InlineData(6)]
-    [InlineData(32)]
-    [InlineData(255)]
-    public void TestLength( byte length)
+    [InlineData(typeof(ShortUriGeneratorRandom), 1)]
+    [InlineData(typeof(ShortUriGeneratorRandom), 6)]
+    [InlineData(typeof(ShortUriGeneratorRandom), 32)]
+    [InlineData(typeof(ShortUriGeneratorRandom), 255)]
+    [InlineData(typeof(ShortUriGeneratorMd5), 1)]
+    [InlineData(typeof(ShortUriGeneratorMd5), 6)]
+    [InlineData(typeof(ShortUriGeneratorMd5), 32)]
+    [InlineData(typeof(ShortUriGeneratorMd5), 255)]
+    public void TestLength(Type ShortUriGeneratorType, byte length)
     {
         string originalUrl = "https://www.example.com";
-        IShortUriGenerator ShortUriGenerator = new ShortUriGeneratorRandom(length);
+        IShortUriGenerator ShortUriGenerator = (IShortUriGenerator) Activator.CreateInstance(ShortUriGeneratorType, [length]);
         string shortUrl = ShortUriGenerator.Generate(originalUrl);
         shortUrl.Should().NotBeNullOrEmpty();
         shortUrl.Length.Should().Be(length);
     }
 
-    [Fact]
-    public void TestGenerateNewValueAlways()
+    [Theory]
+    [InlineData(typeof(ShortUriGeneratorRandom))]
+    [InlineData(typeof(ShortUriGeneratorMd5))]
+    public void TestGenerateNewValueAlways(Type ShortUriGeneratorType)
     {
-        IShortUriGenerator ShortUriGenerator = new ShortUriGeneratorRandom(6);
+        IShortUriGenerator ShortUriGenerator = (IShortUriGenerator) Activator.CreateInstance(ShortUriGeneratorType, [(byte)6]);
         
         string originalUrl = "https://www.example.com";
         HashSet<string> urlsHashSet = new HashSet<string>();
