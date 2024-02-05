@@ -12,17 +12,6 @@ public class TinyUrlServiceMemoryUnitTests
     private readonly Mock<ITinyUrlServiceConfig> _configMock = new Mock<ITinyUrlServiceConfig>();
     private readonly Mock<IShortUriGenerator> _shortUriGeneratorMock = new Mock<IShortUriGenerator>();
 
-    /*
-    private readonly ITinyUrlServiceConfig _config = new Config();
-    private readonly IShortUriGenerator _shortUriGeneratorRandom = new ShortUriGeneratorRandom(6);
-    private readonly IShortUriGenerator _shortUriGeneratorMd5 = new ShortUriGeneratorMd5(6);
-    */
-
-    public TinyUrlServiceMemoryUnitTests()
-    {
-
-    }
-
     [Fact]
     public void TestConstructor()
     {
